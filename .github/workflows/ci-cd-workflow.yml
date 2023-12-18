@@ -1,0 +1,26 @@
+name: CI/CD Workflow  
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Execute Python script
+        run: python3 src/hello_world.py
+        env:
+          TEST_PARAM: ${{secrets.TEST_PARAM}}
+      
+      - name: Print TEST_PARAM
+        run: echo ${{secrets.TEST_PARAM}}
