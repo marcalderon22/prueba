@@ -6,21 +6,19 @@ on:
       - main
 
 jobs:
-  build:
+  create-docker-image:
+    name: Create Docker Image
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.8
-
-      - name: Execute Python script
-        run: python3 src/hello_world.py
+      - uses: actions/checkout@v4
+      - name: Create, tag Docker image
+        run: docker buildx build --platform linux/amd64 -t hello-world .
+      
+      - name: Run Docker image
         env:
           TEST_PARAM: ${{secrets.TEST_PARAM}}
+        run: docker run -e TEST_PARAM=$TEST_PARAM hello-world
+        
       
       - name: Print TEST_PARAM
         run: echo ${{secrets.TEST_PARAM}}
