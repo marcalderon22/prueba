@@ -12,12 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Create, tag Docker image
-        run: docker buildx build --platform linux/amd64 -t hello-world .
+        run: docker buildx build --platform linux/amd64 -t test_project .
       
       - name: Run Docker image
         env:
           TEST_PARAM: ${{secrets.TEST_PARAM}}
-        run: docker run -e TEST_PARAM=$TEST_PARAM hello-world
+          TEST_ADDRESS: ${{secrets.TEST_ADDRESS}}
+        run: docker run -e TEST_PARAM=$TEST_PARAM TEST_ADDRESS=$TEST_ADDRESS test_project
         
       
       - name: Print TEST_PARAM
