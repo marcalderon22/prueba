@@ -18,7 +18,7 @@ jobs:
         env:
           TEST_PARAM: ${{secrets.TEST_PARAM}}
           TEST_ADDRESS: ${{secrets.TEST_ADDRESS}}
-        run: docker run -e TEST_PARAM=$TEST_PARAM TEST_ADDRESS=$TEST_ADDRESS test_project
+        run: docker run -e TEST_PARAM=$TEST_PARAM -e TEST_ADDRESS=$TEST_ADDRESS test_project
         
       
       - name: Print TEST_PARAM
