@@ -10,4 +10,4 @@ COPY src /app/src
 
 ENV TEST_PARAM=${TEST_PARAM}
 
-CMD ["python","src/hello_world.py"]
+ENTRYPOINT ["python","src/hello_world.py"]
