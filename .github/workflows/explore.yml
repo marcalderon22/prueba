@@ -35,7 +35,6 @@ jobs:
 
   DeployProd:
     name: Deploy to Production
-    if: github.event_name == 'push'
     needs: DeployQA
     runs-on: ubuntu-latest
     environment: 
