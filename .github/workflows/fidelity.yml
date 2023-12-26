@@ -1,4 +1,4 @@
-name: EXPLORE DEPLOY
+name: FIDELITY DEPLOY
 
 on:
   workflow_dispatch:
