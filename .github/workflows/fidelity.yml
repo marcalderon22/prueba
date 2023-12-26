@@ -1,6 +1,9 @@
 name: FIDELITY DEPLOY QA
 
 on:
+  push:
+    branches:
+      - qa
   workflow_dispatch:
 
 jobs:
